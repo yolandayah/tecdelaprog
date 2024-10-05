@@ -17,18 +17,25 @@ class Ponderacion:
 
 
 class Calificacion:
-    pass
+    def __init__(self):
+        self.ponderaciones = []
+
+    def add(self, ponderacion: Ponderacion):
+        self.ponderaciones.append(ponderacion)
 
 
 def principal():
     """
     Función principal del programa
     """
+    cal = Calificacion
+
     print("Programa que te ayuda a calcular el promedio de un alumno\n\n")
 
-    numero = int(input("¿Cuanto es el porcentaje de las Tareas?"))
+    elemento = "Tareas"
+    numero = int(input(f"¿Cuanto es el porcentaje de las {elemento}?"))
 
-    print(numero)
+    cal.add(Ponderacion(elemento, numero))
 
 
 if __name__ == "__main__":
