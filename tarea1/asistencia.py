@@ -17,6 +17,12 @@ class Ponderacion:
 
 
 class Calificacion:
+    """Clase calificación
+
+    Es usada para hacer los calculos de la calificación
+    con la ponderación de cada elemento
+    """
+
     def __init__(self):
         self.ponderaciones = []
 
@@ -32,10 +38,9 @@ def principal():
 
     print("Programa que te ayuda a calcular el promedio de un alumno\n\n")
 
-    elemento = "Tareas"
-    numero = int(input(f"¿Cuanto es el porcentaje de las {elemento}?"))
-
-    cal.add(Ponderacion(elemento, numero))
+    for elemento in ["Tareas", "Examenes", "Participación", "Asistencia"]:
+        numero = int(input(f"¿Cuanto es el porcentaje de las {elemento}?"))
+        cal.add(Ponderacion(elemento, numero))
 
 
 if __name__ == "__main__":
