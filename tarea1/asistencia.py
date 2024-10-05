@@ -4,13 +4,32 @@
 Ejemplo de una mónada para calcular el promedio de alumnos
 """
 
-def main():
+
+class Ponderacion:
+    """Clase Ponderación
+
+    Es usada para la saber lo que se va a calificar
     """
-    Comentario de la función
+
+    def __init__(self, nombre: str, numero_maximo: int):
+        self.nombre = nombre
+        self.maximo = numero_maximo
+
+
+class Calificacion:
+    pass
+
+
+def principal():
     """
-    print("Hola Mundo")
+    Función principal del programa
+    """
+    print("Programa que te ayuda a calcular el promedio de un alumno\n\n")
+
+    numero = int(input("¿Cuanto es el porcentaje de las Tareas?"))
+
+    print(numero)
 
 
 if __name__ == "__main__":
-    main()
-
+    principal()
