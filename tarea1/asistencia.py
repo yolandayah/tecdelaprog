@@ -28,14 +28,19 @@ class Calificacion:
         self.ponderaciones = []
 
     def add(self, ponderacion: Ponderacion):
-        self.ponderaciones.append(ponderacion)
+        # elemento = {"ponderacion": None, "calificacion": 0.0}
+        elemento = {
+            "ponderacion": ponderacion,
+            "calificacion": 0.0,
+        }
+        self.ponderaciones.append(elemento)
 
 
 def principal():
     """
     Función principal del programa
     """
-    cal = Calificacion
+    cal = Calificacion()
 
     print("Programa que te ayuda a calcular el promedio de un alumno\n\n")
 
@@ -47,7 +52,8 @@ def principal():
         if elemento != "Examenes":
             num_max = int(input(f"¿Cuántas {elemento} fueron?: "))
 
-        cal.add(Ponderacion(elemento, porcentaje, num_max))
+        pon = Ponderacion(elemento, porcentaje, num_max)
+        cal.add(pon)
 
     # Variable para saber si queremos salir
     salir = False
@@ -58,6 +64,9 @@ def principal():
         print("   Si son Examenes pon su calificación")
         print("   Si es participación cuantas participaciones tubo")
         print("   Si son Asitencias pon cuantas asistencias tubo.")
+
+        # for cal
+
         salir = True
 
 
