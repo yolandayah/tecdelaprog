@@ -42,26 +42,21 @@ class Failure(Either):
 def get_valid_grade(prompt: str) -> Either:
     """Obtiene los valores del teclado"""
 
-    # Valor de retorno
-    retorno = None
-
     # preguntamos el valor
     valor = input(prompt)
 
     # Verificamos si es "Q" o "q"
     if valor.lower() == "q":
-        retorno = Success(valor)
+        return Success(valor)
 
     try:
         grade = float(valor)
         if 0 <= grade <= 10:
-            retorno = Success(grade)
+            return Success(grade)
         else:
-            retorno = Failure("La calificación debe estar entre 0 y 10.")
+            return Failure("La calificación debe estar entre 0 y 10.")
     except ValueError:
-        retorno = Failure("Por favor, ingrese un número válido.")
-
-    return retorno
+        return Failure("Por favor, ingrese un número válido.")
 
 
 def calculate_average(grades: list[float]) -> Either:
@@ -94,7 +89,8 @@ def principal() -> None:
     average = calculate_average(grades).bind(
         lambda avg: Success(f"El promedio es: {avg:.2f}")
     )
-    print(average.value if isinstance(average.value, Success) else average.value)
+    # print(average.value if isinstance(average.value, Success) else average.value)
+    print(average.value)
 
 
 if __name__ == "__main__":
