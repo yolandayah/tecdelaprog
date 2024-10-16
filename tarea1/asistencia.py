@@ -27,7 +27,8 @@ class Calificacion:
     def __init__(self):
         self.ponderaciones = []
 
-    def add(self, ponderacion: Ponderacion):
+    def add(self, ponderacion: Ponderacion) -> None:
+        """Agrega las ponderaciones de las calificaciones"""
         # elemento = {"ponderacion": None, "calificacion": 0.0}
         elemento = {
             "ponderacion": ponderacion,
@@ -35,8 +36,17 @@ class Calificacion:
         }
         self.ponderaciones.append(elemento)
 
+    def valida_ponderaciones(self) -> bool:
+        """Valida que las ponderaciones sean de 100%"""
 
-def principal():
+        suma = 0
+        for elemento in self.ponderaciones:
+            suma += elemento["ponderacion"].porcentaje
+
+        return suma == 100
+
+
+def principal() -> None:
     """
     Función principal del programa
     """
@@ -54,6 +64,10 @@ def principal():
 
         pon = Ponderacion(elemento, porcentaje, num_max)
         cal.add(pon)
+
+    if not cal.valida_ponderaciones():
+        print("Los porcentajes no suman 100%")
+        return
 
     # Variable para saber si queremos salir
     salir = False
