@@ -29,14 +29,13 @@ class Calificacion:
 
     def add(self, ponderacion: Ponderacion) -> None:
         """Agrega las ponderaciones de las calificaciones"""
-        # elemento = {"ponderacion": None, "calificacion": 0.0}
         elemento = {
             "ponderacion": ponderacion,
             "calificacion": 0.0,
         }
         self.ponderaciones.append(elemento)
 
-    def valida_ponderaciones(self) -> bool:
+    def ponderaciones_validas(self) -> bool:
         """Valida que las ponderaciones sean de 100%"""
 
         suma = 0
@@ -44,6 +43,17 @@ class Calificacion:
             suma += elemento["ponderacion"].porcentaje
 
         return suma == 100
+
+    def calcular_promedio(self) -> float:
+        """Calcula el promedio de las calificaciones"""
+
+        promedio = 0
+        for elemento in self.ponderaciones:
+            promedio += (
+                elemento["ponderacion"].porcentaje / 100 * elemento["calificacion"]
+            )
+
+        return promedio
 
 
 def principal() -> None:
@@ -65,8 +75,8 @@ def principal() -> None:
         pon = Ponderacion(elemento, porcentaje, num_max)
         cal.add(pon)
 
-    if not cal.valida_ponderaciones():
-        print("Los porcentajes no suman 100%")
+    if not cal.ponderaciones_validas():
+        print("Los porcentajes NO suman 100%")
         return
 
     # Variable para saber si queremos salir
@@ -78,6 +88,7 @@ def principal() -> None:
         print("   Si son Examenes pon su calificación")
         print("   Si es participación cuantas participaciones tubo")
         print("   Si son Asitencias pon cuantas asistencias tubo.")
+        print("\n   Para salir, solo da enter en Tareas")
 
         # for cal
 
