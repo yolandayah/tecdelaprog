@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-# vi: set shiftwidth=4 tabstop=8 expandtab:
-
+#
+# Yolanda Alejo Huarta
+#
 # Gemini prompt: Haz un código en python que capture las calificaciones
 #                de alumnos utilizando monadas
 # Se usó el código como ejemplo, se corrigió y se mejoró (tenia varios errores)
@@ -41,22 +42,26 @@ class Failure(Either):
 def get_valid_grade(prompt: str) -> Either:
     """Obtiene los valores del teclado"""
 
+    # Valor de retorno
+    retorno = None
+
+    # preguntamos el valor
     valor = input(prompt)
 
     # Verificamos si es "Q" o "q"
     if valor.lower() == "q":
-        return Success(valor)
+        retorno = Success(valor)
 
     try:
         grade = float(valor)
         if 0 <= grade <= 10:
-            return Success(grade)
+            retorno = Success(grade)
         else:
-            return Failure("La calificación debe estar entre 0 y 10.")
+            retorno = Failure("La calificación debe estar entre 0 y 10.")
     except ValueError:
-        return Failure("Por favor, ingrese un número válido.")
+        retorno = Failure("Por favor, ingrese un número válido.")
 
-    return Failure("Por favor, ingrese un número válido.")
+    return retorno
 
 
 def calculate_average(grades: list[float]) -> Either:
@@ -74,6 +79,7 @@ def principal() -> None:
     grades = []
     salir = False
 
+    # Mientas no se pulse salir "q" sigue preguntando por calificaciones
     while not salir:
         grade = get_valid_grade("Ingrese una calificación (o 'q' para salir): ")
 
