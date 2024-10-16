@@ -13,6 +13,8 @@ T = TypeVar("T")
 
 
 class Either(Generic[E, T]):
+    """Clase Either que puede tener el valor de fallo o exito"""
+
     def __init__(self, value):
         self.value = value
 
@@ -51,18 +53,26 @@ def calculate_average(grades: list[float]) -> Either[str, float]:
     return Success(sum(grades) / len(grades))
 
 
-# Ejemplo de uso
-grades = []
-while True:
-    grade = get_valid_grade("Ingrese una calificación (o 'q' para salir): ")
-    if isinstance(grade.value, Failure):
-        print(grade.value.value)
-    elif grade.value == "q":
-        break
-    else:
-        grades.append(grade.value)
+def principal() -> None:
+    """
+    Función principal del programa
+    """
+    # Ejemplo de uso
+    grades = []
+    while True:
+        grade = get_valid_grade("Ingrese una calificación (o 'q' para salir): ")
+        if isinstance(grade.value, Failure):
+            print(grade.value.value)
+        elif grade.value == "q":
+            break
+        else:
+            grades.append(grade.value)
 
-average = calculate_average(grades).bind(
-    lambda avg: Success(f"El promedio es: {avg:.2f}")
-)
-print(average.value if isinstance(average.value, Success) else average.value.value)
+    average = calculate_average(grades).bind(
+        lambda avg: Success(f"El promedio es: {avg:.2f}")
+    )
+    print(average.value if isinstance(average.value, Success) else average.value.value)
+
+
+if __name__ == "__main__":
+    principal()
