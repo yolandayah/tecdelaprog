@@ -1,8 +1,8 @@
 use std::net::{TcpListener, TcpStream};
 use std::sync::Arc;
 use std::thread;
-use std::io::{Read, Write};
-use std::fs;
+use std::io::Read;
+
 mod handlers;
 
 pub struct WebServer {
