@@ -1,0 +1,17 @@
+Pasos para compilar
+-------------------
+
+$ cargo build
+
+Poner algunos archivos en el directorio static
+
+Pasos para correr
+-----------------
+
+$ cargo run -- 127.0.0.1:8080 ./static
+
+y por último
+
+En un navegador poner la siguiente dirección:
+
+http://localhost:8080/hola.html
