@@ -17,7 +17,6 @@ async def perform_task(task):
 async def worker_main(worker_id, task_queue, result_queue):
     print(f"Worker {worker_id} comenzando (PID: {os.getpid()})")
     while True:
-        task = task_queue.get()  # Block until a task is available
         task = task_queue.get()  # Se bloquea hasta que una tarea este disponible
         if task is None:  # Apaga la señal
             print(f"Worker {worker_id} apagando.")
