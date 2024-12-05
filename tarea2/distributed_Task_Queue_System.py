@@ -27,7 +27,7 @@ async def worker_main(worker_id, task_queue, result_queue):
         except Exception as e:
             print(f"Worker {worker_id} encontró un error: {e}")
 
-
+# Proceso de los workers
 def worker_process(worker_id, task_queue, result_queue):
     asyncio.run(worker_main(worker_id, task_queue, result_queue))
 
