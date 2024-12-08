@@ -76,7 +76,7 @@ fun main() {
                 if (listaAlumnos.isEmpty()) {
                     println("No hay alumnos para guardar en el archivo.")
                 } else {
-                    print("Ingrese el nombre del archivo (con extensión .csv): ")
+                    print("Ingrese el nombre del archivo (con extensión .csv, ejemplo alumnos.csv): ")
                     val nombreArchivo = scanner.next()
                     guardarEnCSV(listaAlumnos, nombreArchivo)
                 }
