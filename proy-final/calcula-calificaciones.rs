@@ -2,10 +2,14 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::sync::mpsc;
 use std::thread;
+use std::io;
 
 fn main() {
-    // Ruta del archivo CSV
-    let file_path = "alumnos.csv";
+    // Solicitar el nombre del archivo CSV
+    println!("Ingrese el nombre del archivo CSV:");
+    let mut file_path = String::new();
+    io::stdin().read_line(&mut file_path).expect("Error al leer el nombre del archivo");
+    let file_path = file_path.trim();
 
     // Abrir el archivo
     let file = File::open(file_path).expect("No se pudo abrir el archivo");
@@ -57,4 +61,3 @@ fn main() {
         handle.join().expect("Error al unir el hilo");
     }
 }
-
